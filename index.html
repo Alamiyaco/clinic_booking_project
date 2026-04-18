@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حجز المواعيد | العالمية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-public">
+  <div class="site-shell">
+    <header class="topbar glass reveal">
+      <div class="brand">
+        <img src="assets/alamia-logo.png" alt="شعار العالمية" class="brand-logo" />
+        <div>
+          <p class="eyebrow">نظام حجز المواعيد</p>
+          <h1>طلب حجز إلكتروني</h1>
+        </div>
+      </div>
+      <a href="admin.html" class="ghost-btn">لوحة الإدارة</a>
+    </header>
+
+    <main class="booking-layout">
+      <section class="hero-panel glass reveal delay-1">
+        <span class="badge">نفس روح التصميم الرسمي</span>
+        <h2>واجهة حجز مرتبة وهادئة<br>تناسب مشروع العيادة أو الخدمة</h2>
+        <p>
+          هذه النسخة هي الخطوة الأولى العملية من المشروع: واجهة المريض + منطق إرسال الطلب + الربط الجاهز مع Google Apps Script.
+          فكرة العمل تعتمد على أن الموعد يبقى <strong>قيد الانتظار</strong> إلى حين موافقة الإدارة.
+        </p>
+
+        <div class="info-grid">
+          <article>
+            <h3>آلية واضحة</h3>
+            <p>المريض يختار الخدمة والتاريخ والوقت ثم يرسل الطلب.</p>
+          </article>
+          <article>
+            <h3>مظهر رسمي</h3>
+            <p>ألوان هادئة مستوحاة من الهوية الرسمية والشعار.</p>
+          </article>
+          <article>
+            <h3>ربط فعلي</h3>
+            <p>البيانات تُرسل إلى Google Sheets عبر Apps Script.</p>
+          </article>
+          <article>
+            <h3>إدارة سهلة</h3>
+            <p>طلب جديد، موافقة، رفض، واتساب، ومتابعة يومية.</p>
+          </article>
+        </div>
+
+        <div class="service-chips" id="serviceHighlights"></div>
+      </section>
+
+      <section class="form-panel glass reveal delay-2">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">الخطوة 1</p>
+            <h2>أرسل طلب الحجز</h2>
+          </div>
+          <div class="status-pill pending">Pending</div>
+        </div>
+
+        <form id="bookingForm" class="booking-form" novalidate>
+          <div class="field two-cols">
+            <div>
+              <label for="fullName">الاسم الكامل</label>
+              <input id="fullName" name="fullName" type="text" placeholder="مثال: محمد أحمد" required />
+            </div>
+            <div>
+              <label for="phone">رقم الهاتف</label>
+              <input id="phone" name="phone" type="tel" placeholder="07xxxxxxxxx" required />
+            </div>
+          </div>
+
+          <div class="field two-cols">
+            <div>
+              <label for="service">نوع الخدمة</label>
+              <select id="service" name="service" required></select>
+            </div>
+            <div>
+              <label for="bookingDate">التاريخ</label>
+              <input id="bookingDate" name="bookingDate" type="date" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>الوقت المتاح</label>
+            <div id="slotsGrid" class="slots-grid"></div>
+            <input type="hidden" id="bookingTime" name="bookingTime" required />
+          </div>
+
+          <div class="field">
+            <label for="notes">ملاحظات إضافية</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="أي تفاصيل إضافية ترغب بإيصالها للإدارة"></textarea>
+          </div>
+
+          <div class="notice-card">
+            بعد الإرسال ستظهر حالة الطلب <strong>قيد الانتظار</strong> إلى حين مراجعة الإدارة.
+          </div>
+
+          <button type="submit" class="primary-btn" id="submitBtn">إرسال طلب الحجز</button>
+          <p id="formMessage" class="form-message"></p>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    window.APP_CONFIG = {
+      apiBaseUrl: 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL_HERE',
+      clinicName: 'العالمية',
+      currency: 'IQD'
+    };
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

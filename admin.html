@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة الإدارة | العالمية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-admin">
+  <div class="site-shell admin-shell">
+    <header class="topbar glass reveal">
+      <div class="brand">
+        <img src="assets/alamia-logo.png" alt="شعار العالمية" class="brand-logo" />
+        <div>
+          <p class="eyebrow">لوحة المتابعة</p>
+          <h1>إدارة طلبات الحجز</h1>
+        </div>
+      </div>
+      <a href="index.html" class="ghost-btn">صفحة الحجز</a>
+    </header>
+
+    <section class="dashboard-overview reveal delay-1">
+      <article class="overview-card glass"><span>الطلبات الجديدة</span><strong id="countPending">0</strong></article>
+      <article class="overview-card glass"><span>المؤكدة</span><strong id="countApproved">0</strong></article>
+      <article class="overview-card glass"><span>المرفوضة</span><strong id="countRejected">0</strong></article>
+      <article class="overview-card glass"><span>مواعيد اليوم</span><strong id="countToday">0</strong></article>
+    </section>
+
+    <section class="admin-controls glass reveal delay-2">
+      <div class="field search-box">
+        <label for="searchInput">بحث</label>
+        <input id="searchInput" type="text" placeholder="ابحث بالاسم أو الرقم أو الخدمة" />
+      </div>
+      <div class="filter-group">
+        <button class="filter-btn active" data-filter="ALL">الكل</button>
+        <button class="filter-btn" data-filter="Pending">طلبات جديدة</button>
+        <button class="filter-btn" data-filter="Approved">مؤكدة</button>
+        <button class="filter-btn" data-filter="Rejected">مرفوضة</button>
+      </div>
+      <button class="ghost-btn" id="refreshBtn">تحديث</button>
+    </section>
+
+    <main class="admin-layout">
+      <section class="admin-list-wrap">
+        <div class="section-head reveal delay-3">
+          <div>
+            <p class="eyebrow">المتابعة اليومية</p>
+            <h2>قائمة الطلبات</h2>
+          </div>
+        </div>
+        <div id="bookingCards" class="booking-cards"></div>
+      </section>
+
+      <aside class="sidebar-panel glass reveal delay-4">
+        <div class="section-head compact">
+          <div>
+            <p class="eyebrow">اليوم</p>
+            <h2>المواعيد المؤكدة</h2>
+          </div>
+        </div>
+        <div id="todayList" class="today-list"></div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    window.APP_CONFIG = {
+      apiBaseUrl: 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL_HERE',
+      clinicName: 'العالمية'
+    };
+  </script>
+  <script src="admin.js"></script>
+</body>
+</html>
